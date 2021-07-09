@@ -4,8 +4,13 @@ package Chapter1;
 
 import java.io.*;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HTTPServer {
+
+    private static Map<String, Servlet> servletCache = new HashMap<>(); // servlet缓存
+
     public static void main(String[] args) {
         int port;
         ServerSocket serverSocket;
@@ -61,6 +66,29 @@ public class HTTPServer {
             uri = parts[1];
         }
 
+        // 动态资源
+        if(uri.contains("servlet")) {
+            String servletName;
+            if(uri.contains("?")) {
+                servletName = uri.substring(uri.indexOf("servlet/") + 8, uri.indexOf("?"));
+            } else {
+                servletName = uri.substring(uri.indexOf("servlet/") + 8);
+            }
+            Servlet servlet = servletCache.get(servletName);
+            if(servlet == null) {
+//                servlet = new HelloServlet();
+                // 反射 通过servletName拿到HelloServlet实现类
+                servlet = (Servlet)Class.forName("Chapter1." + servletName).getDeclaredConstructor().newInstance();
+                servlet.init();
+                servletCache.put(servletName, servlet);
+            }
+            servlet.service(buffer, socket.getOutputStream());
+            Thread.sleep(1000);
+            socket.close();
+            return ;
+        }
+
+        // 静态资源
         // http响应正文的类型
         String contentType;
         if (uri.contains("html") || uri.contains("htm"))
