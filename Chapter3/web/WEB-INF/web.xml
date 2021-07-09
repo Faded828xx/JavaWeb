@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>Dispatcher</servlet-name>
-        <servlet-class>mypack.DispatcherServlet</servlet-class>
+        <servlet-class>mypack.dispatcherServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
