@@ -3,7 +3,7 @@ package mypack;
 import javax.servlet.*;
 import java.io.IOException;
 
-public class DispatcherServlet extends GenericServlet {
+public class dispatcherServlet extends GenericServlet {
     private String target = "/index.jsp";
 
     public void service(ServletRequest request, ServletResponse response) throws ServletException, IOException {
