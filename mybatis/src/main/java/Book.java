@@ -1,7 +1,19 @@
+import jdk.nashorn.internal.objects.annotations.Getter;
+
 public class Book {
     int ID;
     String name;
     String title;
+    int year;
+
+
+    public int getPrice() {
+        return year;
+    }
+
+    public void setPrice(int price) {
+        this.year = price;
+    }
 
     public int getID() {
         return ID;
@@ -33,6 +45,7 @@ public class Book {
                 "ID=" + ID +
                 ", name='" + name + '\'' +
                 ", title='" + title + '\'' +
+                ", year=" + year +
                 '}';
     }
 }

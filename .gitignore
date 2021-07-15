@@ -3,3 +3,6 @@
 /.idea/
 /JavaWeb.iml
 /Chapter3/Chapter3.iml
+/mybatis/target/
+/mybatis/src/test/
+/mybatis/mybatis.iml

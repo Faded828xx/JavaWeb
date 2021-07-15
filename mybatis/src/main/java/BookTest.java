@@ -13,7 +13,7 @@ public class BookTest {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
         try (SqlSession session = sqlSessionFactory.openSession()) {
             BookDao mapper = session.getMapper(BookDao.class);
-            Book book = mapper.selectBook(211);
+            Book book = mapper.selectBook("BOOKS", 211);
             System.out.println(book);
         }
     }
